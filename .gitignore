@@ -1,0 +1,4 @@
+# 檔案名稱 .gitignore
+
+# 忽略 log.txt 檔案
+log.txt
