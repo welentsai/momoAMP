@@ -1,4 +1,8 @@
 # 檔案名稱 .gitignore
 
-# 忽略 log.txt 檔案
-log.txt
+# 忽略檔案
+*.txt
+test.html
+
+# 忽略資料夾
+__pycache__/

@@ -3,6 +3,24 @@
 import requests
 import json
 
+from momoItm import MomoItm
+from momoItmTag import ItmTag
+
+def showRespInfo(jsonData):
+	print(json.dumps(jsonData, indent=4, sort_keys=True))
+
+def showGoods(goodsDict):
+	for good in goodsDict:
+		tag = ItmTag(good)
+		tag.getTag()
+		# print(good['goodsType'] + " (" + getGoodsDesc(good['goodsType']) + ")")
+		# print(good['imgUrl'])
+		# print(good['imgWidth'] + " " + good['imgHeight'])
+		# print(good['goodsUrl'])
+		# print(good['categoryUrl'])
+		# print(good['icon'])
+		# print()
+
 def getGoodsDesc(type):
 	if type == '0':
 		return "一般商品"
@@ -20,28 +38,23 @@ def doMomoPost(host, cateCode, curPage):
 		"Accept": "*/*"
 	}
 	payload = {
-	  "host": "AMP",
+	  "host": host,
 	  "data": {
-	    "cateCode": "4000700009",
-	    "curPage": "1"
+	    "cateCode": cateCode,
+	    "curPage": curPage
   	}
 	}
 
 	r = requests.post(url, headers=headers, json=payload)
 	jsonData = json.loads(r.text)
 	goodsDict = jsonData['rtnGoodsData']['goodsInfoList']
-	for good in goodsDict:
-		print(good['goodsType'] + " (" + getGoodsDesc(good['goodsType']) + ")")
-		print(good['imgUrl'])
-		print(good['imgWidth'] + " " + good['imgHeight'])
-		print(good['goodsUrl'])
-		print(good['categoryUrl'])
-		print(good['icon'])
-		print()
+	# showRespInfo(jsonData)
+	showGoods(goodsDict)
+	
 
 def main():
 	# print("Hello World!")
-	doMomoPost("AMP", "4000700009", "1")	
+	doMomoPost("AMP", "1901100205", "1")	
   
 if __name__== "__main__":
 	main()
