@@ -3,6 +3,8 @@
 # 忽略檔案
 *.txt
 test.html
+result.html
+general.html
 
 # 忽略資料夾
 __pycache__/
